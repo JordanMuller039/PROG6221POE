@@ -1,0 +1,7 @@
+C:\Users\Vermo\OneDrive\Documents\Uni\Varsity College\Year 2\Programming 2A\POE\bin\Debug\POE.exe.config
+C:\Users\Vermo\OneDrive\Documents\Uni\Varsity College\Year 2\Programming 2A\POE\bin\Debug\POE.exe
+C:\Users\Vermo\OneDrive\Documents\Uni\Varsity College\Year 2\Programming 2A\POE\bin\Debug\POE.pdb
+C:\Users\Vermo\OneDrive\Documents\Uni\Varsity College\Year 2\Programming 2A\POE\obj\Debug\POE.csproj.AssemblyReference.cache
+C:\Users\Vermo\OneDrive\Documents\Uni\Varsity College\Year 2\Programming 2A\POE\obj\Debug\POE.csproj.CoreCompileInputs.cache
+C:\Users\Vermo\OneDrive\Documents\Uni\Varsity College\Year 2\Programming 2A\POE\obj\Debug\POE.exe
+C:\Users\Vermo\OneDrive\Documents\Uni\Varsity College\Year 2\Programming 2A\POE\obj\Debug\POE.pdb
