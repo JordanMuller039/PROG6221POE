@@ -5,3 +5,10 @@ C:\Users\Vermo\OneDrive\Documents\Uni\Varsity College\Year 2\Programming 2A\Opti
 C:\Users\Vermo\OneDrive\Documents\Uni\Varsity College\Year 2\Programming 2A\OptimizedPOE\obj\Debug\OptimizedPOE.csproj.CoreCompileInputs.cache
 C:\Users\Vermo\OneDrive\Documents\Uni\Varsity College\Year 2\Programming 2A\OptimizedPOE\obj\Debug\OptimizedPOE.exe
 C:\Users\Vermo\OneDrive\Documents\Uni\Varsity College\Year 2\Programming 2A\OptimizedPOE\obj\Debug\OptimizedPOE.pdb
+C:\Users\Vermo\OneDrive\Documents\Uni\Varsity College\Year 2\Programming 2A\ST10150702_PROG6221_Part2\OptimizedPOE\obj\Debug\OptimizedPOE.csproj.AssemblyReference.cache
+C:\Users\Vermo\OneDrive\Documents\Uni\Varsity College\Year 2\Programming 2A\ST10150702_PROG6221_Part2\OptimizedPOE\obj\Debug\OptimizedPOE.csproj.CoreCompileInputs.cache
+C:\Users\Vermo\OneDrive\Documents\Uni\Varsity College\Year 2\Programming 2A\ST10150702_PROG6221_Part2\OptimizedPOE\obj\Debug\OptimizedPOE.exe
+C:\Users\Vermo\OneDrive\Documents\Uni\Varsity College\Year 2\Programming 2A\ST10150702_PROG6221_Part2\OptimizedPOE\obj\Debug\OptimizedPOE.pdb
+C:\Users\Vermo\OneDrive\Documents\Uni\Varsity College\Year 2\Programming 2A\ST10150702_PROG6221_Part2\OptimizedPOE\bin\Debug\OptimizedPOE.exe.config
+C:\Users\Vermo\OneDrive\Documents\Uni\Varsity College\Year 2\Programming 2A\ST10150702_PROG6221_Part2\OptimizedPOE\bin\Debug\OptimizedPOE.exe
+C:\Users\Vermo\OneDrive\Documents\Uni\Varsity College\Year 2\Programming 2A\ST10150702_PROG6221_Part2\OptimizedPOE\bin\Debug\OptimizedPOE.pdb

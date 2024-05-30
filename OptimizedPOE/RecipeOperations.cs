@@ -7,131 +7,124 @@ namespace POE
     internal class RecipeOperations
     {
         private List<Recipe> recipes = new List<Recipe>();
-        private Dictionary<int, double> scaleFactors = new Dictionary<int, double>();
 
         public void CreateRecipe()
         {
-            Recipe recipe = new Recipe();
+            Console.WriteLine("Enter the name of the recipe:");
+            string name = Console.ReadLine();
+            var recipe = new Recipe(name);
+
             Console.WriteLine("How many ingredients in this recipe?");
-            if (!int.TryParse(Console.ReadLine(), out int numIngredients) || numIngredients <= 0)
-            {
-                Console.WriteLine("Invalid input for the number of ingredients.");
-                return;
-            }
+            int numIngredients = Convert.ToInt32(Console.ReadLine());
 
             for (int i = 0; i < numIngredients; i++)
             {
                 Console.WriteLine($"Please enter the name of ingredient {i + 1}:");
                 string ingredientName = Console.ReadLine();
 
-                Console.WriteLine($"Please enter the quantity and measurement for {ingredientName} (e.g., '200 grams' or '1 liter'):");
-                string input = Console.ReadLine();
-                string[] parts = input.Split(new[] { ' ' }, 2, StringSplitOptions.RemoveEmptyEntries);
+                Console.WriteLine($"Please enter the quantity and measurement of {ingredientName} (e.g., 200 grams):");
+                string[] parts = Console.ReadLine().Split(' ');
 
-                if (parts.Length != 2 || !double.TryParse(parts[0], out double quantity))
+                if (parts.Length < 2)
                 {
-                    Console.WriteLine("Invalid input for ingredient quantity and measurement.");
+                    Console.WriteLine("Invalid input. Please enter the quantity and measurement again.");
                     i--;
                     continue;
                 }
 
-                string measurementType = parts[1];
+                double quantity = Convert.ToDouble(parts[0]);
+                string measurement = string.Join(" ", parts.Skip(1));
 
-                recipe.AddIngredient(ingredientName, quantity, measurementType);
+                recipe.AddIngredient(ingredientName, quantity, measurement);
             }
 
             Console.WriteLine("How many steps in this recipe?");
-            if (!int.TryParse(Console.ReadLine(), out int numSteps) || numSteps <= 0)
-            {
-                Console.WriteLine("Invalid input for the number of steps.");
-                return;
-            }
+            int numSteps = Convert.ToInt32(Console.ReadLine());
 
             for (int i = 0; i < numSteps; i++)
             {
                 Console.WriteLine($"Please enter step {i + 1}:");
-                string step = Console.ReadLine();
-                recipe.AddStep(step);
+                recipe.AddStep(Console.ReadLine());
             }
 
             recipes.Add(recipe);
-            scaleFactors[recipes.Count - 1] = 1.0; // Initialize scaling factor to 1
-            Console.WriteLine("Recipe Created");
+            Console.WriteLine("Recipe created!");
         }
 
         public void ViewRecipes()
         {
             if (recipes.Count == 0)
             {
-                Console.WriteLine("No recipes available.");
+                Console.WriteLine("No recipes available to view.");
                 return;
             }
 
-            for (int i = 0; i < recipes.Count; i++)
+            var sortedRecipes = recipes.OrderBy(r => r.Name).ToList();
+
+            Console.WriteLine("Available recipes:");
+            for (int i = 0; i < sortedRecipes.Count; i++)
             {
-                Console.WriteLine($"Recipe {i + 1}:\n{recipes[i]}");
+                Console.WriteLine($"{i + 1}. {sortedRecipes[i].Name}");
+            }
+
+            Console.WriteLine("Enter the number of the recipe you wish to view:");
+            int choice = Convert.ToInt32(Console.ReadLine()) - 1;
+
+            if (choice >= 0 && choice < sortedRecipes.Count)
+            {
+                Console.WriteLine(sortedRecipes[choice]);
+            }
+            else
+            {
+                Console.WriteLine("Invalid choice.");
             }
         }
 
         public void ScaleRecipe(int recipeIndex, double factor)
         {
-            if (recipeIndex < 0 || recipeIndex >= recipes.Count)
+            if (recipeIndex >= 0 && recipeIndex < recipes.Count)
+            {
+                var recipe = recipes[recipeIndex];
+                recipe.Scale(factor);
+                Console.WriteLine("Recipe scaled successfully.");
+            }
+            else
             {
                 Console.WriteLine("Invalid recipe index.");
-                return;
             }
-
-            if (factor != 0.5 && factor != 2 && factor != 3)
-            {
-                Console.WriteLine("Invalid scaling factor. Only 0.5, 2, and 3 are allowed.");
-                return;
-            }
-
-            recipes[recipeIndex].Scale(factor);
-            scaleFactors[recipeIndex] *= factor;
-            Console.WriteLine("Recipe scaled successfully.");
         }
 
         public void ResetRecipeScaling(int recipeIndex)
         {
-            if (recipeIndex < 0 || recipeIndex >= recipes.Count)
+            if (recipeIndex >= 0 && recipeIndex < recipes.Count)
+            {
+                // Implementation here if needed
+                Console.WriteLine("Reset functionality is not implemented.");
+            }
+            else
             {
                 Console.WriteLine("Invalid recipe index.");
-                return;
             }
-
-            double factor = scaleFactors[recipeIndex];
-            recipes[recipeIndex].ResetScaling(1 / factor);
-            scaleFactors[recipeIndex] = 1.0; // Reset scaling factor
-            Console.WriteLine("Recipe scaling reset successfully.");
         }
 
         public void DeleteRecipe(int? recipeIndex = null)
         {
             if (recipeIndex.HasValue)
             {
-                if (recipeIndex.Value < 0 || recipeIndex.Value >= recipes.Count)
+                if (recipeIndex >= 0 && recipeIndex < recipes.Count)
+                {
+                    recipes.RemoveAt(recipeIndex.Value);
+                    Console.WriteLine("Recipe deleted successfully.");
+                }
+                else
                 {
                     Console.WriteLine("Invalid recipe index.");
-                    return;
                 }
-                recipes.RemoveAt(recipeIndex.Value);
-                scaleFactors.Remove(recipeIndex.Value);
-                // Update scaleFactors keys
-                var newScaleFactors = new Dictionary<int, double>();
-                int i = 0;
-                foreach (var factor in scaleFactors.Values)
-                {
-                    newScaleFactors[i++] = factor;
-                }
-                scaleFactors = newScaleFactors;
-                Console.WriteLine("Recipe deleted successfully.");
             }
             else
             {
                 recipes.Clear();
-                scaleFactors.Clear();
-                Console.WriteLine("All recipes have been cleared.");
+                Console.WriteLine("All recipes deleted successfully.");
             }
         }
     }
