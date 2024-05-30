@@ -17,9 +17,9 @@ namespace POE
             steps = new List<string>();
         }
 
-        public void AddIngredient(string name, double quantity, string measurement)
+        public void AddIngredient(string name, double quantity, string measurement, string foodGroup, int calories)
         {
-            ingredients.Add(new Ingredient { Name = name, Quantity = quantity, Measurement = measurement });
+            ingredients.Add(new Ingredient { Name = name, Quantity = quantity, Measurement = measurement, FoodGroup = foodGroup, Calories = calories });
         }
 
         public void AddStep(string step)
@@ -52,7 +52,7 @@ namespace POE
             sb.AppendLine("Ingredients:");
             foreach (var ingredient in ingredients)
             {
-                sb.AppendLine($"{ingredient.Quantity} {ingredient.Measurement} of {ingredient.Name}");
+                sb.AppendLine($"{ingredient.Quantity} {ingredient.Measurement} of {ingredient.Name} ({ingredient.FoodGroup}, {ingredient.Calories} calories)");
             }
             sb.AppendLine("===============================");
             sb.AppendLine("Steps:");
@@ -70,5 +70,7 @@ namespace POE
         public string Name { get; set; }
         public double Quantity { get; set; }
         public string Measurement { get; set; }
+        public string FoodGroup { get; set; }
+        public int Calories { get; set; }
     }
 }

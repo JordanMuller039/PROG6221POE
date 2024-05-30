@@ -35,7 +35,13 @@ namespace POE
                 double quantity = Convert.ToDouble(parts[0]);
                 string measurement = string.Join(" ", parts.Skip(1));
 
-                recipe.AddIngredient(ingredientName, quantity, measurement);
+                Console.WriteLine($"Please enter the food group of {ingredientName} (e.g., Carbohydrates, Sugars, Fats):");
+                string foodGroup = Console.ReadLine();
+
+                Console.WriteLine($"Please enter the number of calories in {ingredientName}:");
+                int calories = Convert.ToInt32(Console.ReadLine());
+
+                recipe.AddIngredient(ingredientName, quantity, measurement, foodGroup, calories);
             }
 
             Console.WriteLine("How many steps in this recipe?");
