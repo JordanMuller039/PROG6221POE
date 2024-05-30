@@ -1,14 +1,21 @@
 ﻿using System;
 
+/* Summary
+ This class contains the main method in which the user is prompted with choices 
+for what they would like to do in the program, this class is used alot to navigate 
+through the program*/
+
 namespace POE
 {
     internal class Program
     {
         static void Main(string[] args)
         {
+            // Creating a new instance of RecipeOperations Class
             RecipeOperations recipeOps = new RecipeOperations();
             recipeOps.OnCalorieNotification += NotifyUser;
 
+            // Getting the choice from the user
             string menuChoice;
             do
             {
@@ -40,6 +47,7 @@ namespace POE
             } while (menuChoice != "6");
         }
 
+        // Displaying all the choices the user has
         static string UserChoice()
         {
             Console.WriteLine("\tMenu");
@@ -52,6 +60,7 @@ namespace POE
             return Console.ReadLine();
         }
 
+        // If Scale recipe is chosen, the program will ask the ratio and send it to recipeOps
         static void ScaleRecipe(RecipeOperations recipeOps)
         {
             Console.WriteLine("Enter the recipe number to scale:");
@@ -70,6 +79,7 @@ namespace POE
             }
         }
 
+        // This is if the user choses to reset the scale
         static void ResetRecipeScaling(RecipeOperations recipeOps)
         {
             Console.WriteLine("Enter the recipe number to reset scaling:");
@@ -78,6 +88,7 @@ namespace POE
             recipeOps.ResetRecipeScaling(recipeIndex);
         }
 
+        // If the user choses to delete the recipe from memory
         static void DeleteRecipe(RecipeOperations recipeOps)
         {
             Console.WriteLine("Enter the recipe number to delete (leave blank to delete all):");
@@ -94,6 +105,7 @@ namespace POE
             }
         }
 
+        // This is if the calories exceed 300, the user will be notified
         static void NotifyUser(string message)
         {
             Console.WriteLine(message);

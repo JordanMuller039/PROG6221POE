@@ -2,14 +2,21 @@
 using System.Collections.Generic;
 using System.Text;
 
+/* Summary
+ * This class is called when creating or manipulating a recipe in the program
+ and is in charge of storing the recipe in memory as well as displaying the 
+list of recipes */
+
 namespace POE
 {
-    internal class Recipe
+    internal public class Recipe
     {
+        // Lists
         public string Name { get; set; }
         private List<Ingredient> ingredients;
         private List<string> steps;
 
+        // Default Recipe constructor
         public Recipe(string name)
         {
             Name = name;
@@ -17,16 +24,19 @@ namespace POE
             steps = new List<string>();
         }
 
+        // This creates a new instance of an ingredients for when the user enters the information 
         public void AddIngredient(string name, double quantity, string measurement, string foodGroup, int calories)
         {
             ingredients.Add(new Ingredient { Name = name, Quantity = quantity, Measurement = measurement, FoodGroup = foodGroup, Calories = calories });
         }
 
+        // This method adds steps to the already created Step list as the user might enter more and more
         public void AddStep(string step)
         {
             steps.Add(step);
         }
-
+        
+        // If the user choses to scale the recipe this method will do so acording to the scale chosen
         public void Scale(double factor)
         {
             foreach (var ingredient in ingredients)
@@ -35,6 +45,7 @@ namespace POE
             }
         }
 
+        // Simple method to reset the scaling by factor in which the user chose
         public void ResetScaling(double factor)
         {
             foreach (var ingredient in ingredients)
@@ -43,6 +54,7 @@ namespace POE
             }
         }
 
+        // A simple method to count the total calories for the reciep
         public int CalculateTotalCalories()
         {
             int totalCalories = 0;
@@ -53,8 +65,13 @@ namespace POE
             return totalCalories;
         }
 
+
+        // summary
+        /* This is the toString method which is used every time the user wants to view 
+         a recipe from the list and will display all the information needed for the recipe*/
         public override string ToString()
         {
+            // I found stringbuilders to be very useful and researched how to use them for this project
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("===============================");
             sb.AppendLine($"Recipe Name: {Name}");
@@ -76,6 +93,10 @@ namespace POE
         }
     }
 
+
+    /* This internal class did not require its own external class so I
+     * created an internal one for when needing to access Ingredients
+     * */
     internal class Ingredient
     {
         public string Name { get; set; }
