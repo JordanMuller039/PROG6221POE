@@ -7,6 +7,8 @@ namespace POE
         static void Main(string[] args)
         {
             RecipeOperations recipeOps = new RecipeOperations();
+            recipeOps.OnCalorieNotification += NotifyUser;
+
             string menuChoice;
             do
             {
@@ -90,6 +92,11 @@ namespace POE
                 int recipeIndex = Convert.ToInt32(input) - 1;
                 recipeOps.DeleteRecipe(recipeIndex);
             }
+        }
+
+        static void NotifyUser(string message)
+        {
+            Console.WriteLine(message);
         }
     }
 }

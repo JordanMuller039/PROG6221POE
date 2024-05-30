@@ -43,6 +43,16 @@ namespace POE
             }
         }
 
+        public int CalculateTotalCalories()
+        {
+            int totalCalories = 0;
+            foreach (var ingredient in ingredients)
+            {
+                totalCalories += ingredient.Calories;
+            }
+            return totalCalories;
+        }
+
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
@@ -61,6 +71,7 @@ namespace POE
                 sb.AppendLine($"{i + 1}. {steps[i]}");
             }
             sb.AppendLine("===============================");
+            sb.AppendLine($"Total Calories: {CalculateTotalCalories()}");
             return sb.ToString();
         }
     }

@@ -6,7 +6,9 @@ namespace POE
 {
     internal class RecipeOperations
     {
+        public delegate void CalorieNotification(string message);
         private List<Recipe> recipes = new List<Recipe>();
+        public event CalorieNotification OnCalorieNotification;
 
         public void CreateRecipe()
         {
@@ -78,7 +80,14 @@ namespace POE
 
             if (choice >= 0 && choice < sortedRecipes.Count)
             {
-                Console.WriteLine(sortedRecipes[choice]);
+                var selectedRecipe = sortedRecipes[choice];
+                Console.WriteLine(selectedRecipe);
+                int totalCalories = selectedRecipe.CalculateTotalCalories();
+
+                if (totalCalories > 300 && OnCalorieNotification != null)
+                {
+                    OnCalorieNotification($"Warning: The recipe '{selectedRecipe.Name}' exceeds 300 calories (Total: {totalCalories} calories).");
+                }
             }
             else
             {
@@ -104,8 +113,9 @@ namespace POE
         {
             if (recipeIndex >= 0 && recipeIndex < recipes.Count)
             {
-                // Implementation here if needed
-                Console.WriteLine("Reset functionality is not implemented.");
+                var recipe = recipes[recipeIndex];
+                recipe.ResetScaling(1); // Assuming the factor is 1 for reset
+                Console.WriteLine("Recipe scaling reset successfully.");
             }
             else
             {
