@@ -1,0 +1,45 @@
+﻿<Window x:Class="ST10150702_PROG6221_Part3.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ST10150702_PROG6221_Part3"
+        mc:Ignorable="d"
+        Title="Recipe App" Height="450" Width="800">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Create a Recipe">
+                <Grid Background="#d4fff8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="127*"/>
+                        <ColumnDefinition Width="667*"/>
+                    </Grid.ColumnDefinitions>
+                    <RichTextBox Margin="349,19,60,37" TextChanged="RichTextBox_TextChanged" Grid.Column="1">
+                        <FlowDocument>
+                            <Paragraph>
+                                <Run Text=""/>
+                            </Paragraph>
+                        </FlowDocument>
+                    </RichTextBox>
+                    <TextBox Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="19,34,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="157" Height="24"/>
+                    <Label Content="Recipe Name" HorizontalAlignment="Left" Margin="19,8,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+                    <Label Content="Number of Ingredients&#xD;&#xA;" HorizontalAlignment="Left" Margin="19,72,0,0" VerticalAlignment="Top" FontWeight="Bold" Grid.ColumnSpan="2" Width="145"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="View Recipes">
+                <Grid Background="#d4fff8"/>
+            </TabItem>
+            <TabItem Header="Scale a Recipe">
+                <Grid Background="#d4fff8"/>
+            </TabItem>
+            <TabItem Header="Reset a Recipe">
+                <Grid Background="#d4fff8"/>
+            </TabItem>
+            <TabItem Header="Delete a Recipe">
+                <Grid Background="#d4fff8"/>
+            </TabItem>
+            <Label Content="Label"/>
+        </TabControl>
+
+    </Grid>
+</Window>
