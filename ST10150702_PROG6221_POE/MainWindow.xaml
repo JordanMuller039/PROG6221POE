@@ -9,10 +9,11 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0*"/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="33*"/>
+            <ColumnDefinition Width="167*"/>
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
-        <TabControl Grid.ColumnSpan="2">
+        <TabControl Grid.ColumnSpan="3">
             <TabControl.Background>
                 <ImageBrush ImageSource="C:\Users\Vermo\Documents\ST10150702_PROG6221_POE\Background.png" Opacity="0.25" Stretch="UniformToFill"/>
             </TabControl.Background>
@@ -37,7 +38,7 @@
                     <Label Content="Name" HorizontalAlignment="Left" Margin="20,95,0,0" VerticalAlignment="Top" AutomationProperties.Name="lblingredientName" RenderTransformOrigin="0.313,0.522" Grid.Row="1"/>
 
                     <Label Content="Quantity (e.g 200 grams)" HorizontalAlignment="Left" Margin="19,145,0,0" VerticalAlignment="Top" Grid.ColumnSpan="3" Width="143" AutomationProperties.Name="lblingredientQuantity" Grid.Row="1"/>
-                    <Label Content="Food Group" HorizontalAlignment="Left" Margin="20,200,0,0" VerticalAlignment="Top" Grid.ColumnSpan="3" Width="143" AutomationProperties.Name="lblingredientFoodGroup" Grid.Row="1"/>
+                    <Label Content="Food Group" HorizontalAlignment="Left" Margin="20,199,0,0" VerticalAlignment="Top" Grid.ColumnSpan="3" Width="143" AutomationProperties.Name="lblingredientFoodGroup" Grid.Row="1"/>
                     <ComboBox x:Name="cbFoodGroups" HorizontalAlignment="Left" Margin="20,226,0,0" VerticalAlignment="Top" Width="157" Grid.ColumnSpan="3" AutomationProperties.Name="cbFoodGroup" Grid.Row="1"/>
                     <Label Content="Calorie Amount" HorizontalAlignment="Left" Margin="20,253,0,0" VerticalAlignment="Top" Grid.ColumnSpan="3" Width="143" AutomationProperties.Name="lblingredientQuantity" Grid.Row="1"/>
                     <Menu Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="321" Margin="19,376,0,0" VerticalAlignment="Top" Width="259" AutomationProperties.Name="mIngredients" Grid.Row="1"/>
@@ -59,24 +60,58 @@
                 </Grid>
             </TabItem>
             <TabItem Header="View Recipes">
-                <Grid/>
-            </TabItem>
-            <TabItem Header="Scale a Recipe">
-                <Grid/>
-            </TabItem>
-            <TabItem Header="Reset a Recipe">
-                <Grid/>
-            </TabItem>
-            <TabItem Header="Delete a Recipe">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="21*"/>
-                        <ColumnDefinition Width="8*"/>
-                        <ColumnDefinition Width="403*"/>
-                        <ColumnDefinition Width="16*"/>
-                        <ColumnDefinition Width="346*"/>
+                        <ColumnDefinition Width="49*"/>
+                        <ColumnDefinition Width="545*"/>
                     </Grid.ColumnDefinitions>
+                    <RichTextBox x:Name="rtbDisplay2" Margin="274,21,27,21" Grid.Column="1">
+                        <FlowDocument>
+                            <Paragraph>
+                                <Run Text=""/>
+                            </Paragraph>
+                        </FlowDocument>
+                    </RichTextBox>
+                    <Menu Margin="24,161,308,224" Grid.ColumnSpan="2"/>
+                    <Label Content="Pick a Recipe&#xD;&#xA;" HorizontalAlignment="Left" Margin="36,173,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" FontWeight="Bold"/>
+                    <ComboBox x:Name="cbRecipe" HorizontalAlignment="Left" Margin="36,199,0,0" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
+                    <Button x:Name="btnViewRecipe" Content="View Recipe" HorizontalAlignment="Left" Margin="36,226,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="119" Click="btnViewRecipe_Click"/>
+                    <Label Content="Filter&#xD;&#xA;" HorizontalAlignment="Left" Margin="36,265,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" FontWeight="Bold"/>
+                    <Button x:Name="btnFilter" Content="Filter" HorizontalAlignment="Left" Margin="37,457,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="119"/>
+                    <Label Content="Ingredient&#xD;&#xA;" HorizontalAlignment="Left" Margin="36,289,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                    <ComboBox x:Name="cbIngredients" HorizontalAlignment="Left" Margin="37,315,0,0" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
+                    <Label Content="Food Group" HorizontalAlignment="Left" Margin="36,337,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                    <ComboBox x:Name="cbFilterFoodGroup" HorizontalAlignment="Left" Margin="37,363,0,0" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
+                    <Label Content="Max Calories" HorizontalAlignment="Left" Margin="37,400,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                    <TextBox x:Name="tbFilterCalories" HorizontalAlignment="Left" Margin="37,426,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2" Height="21"/>
                 </Grid>
+            </TabItem>
+            <TabItem Header="Scale a Recipe">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="127*"/>
+                        <ColumnDefinition Width="467*"/>
+                    </Grid.ColumnDefinitions>
+                    <RichTextBox x:Name="rtbDisplay3" Margin="182,30,23,55" Grid.Column="1">
+                        <FlowDocument>
+                            <Paragraph>
+                                <Run Text=""/>
+                            </Paragraph>
+                        </FlowDocument>
+                    </RichTextBox>
+                    <Menu Margin="19,198,306,353" Grid.ColumnSpan="2"/>
+                    <Label Content="Pick a Recipe to Scale&#xD;&#xA;" HorizontalAlignment="Left" Margin="36,211,0,0" VerticalAlignment="Top" FontWeight="Bold" Grid.ColumnSpan="2"/>
+                    <ComboBox x:Name="cbScaleRecipe" HorizontalAlignment="Left" Margin="41,237,0,0" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2">
+                        <Button x:Name="cbScaleRecipe1" Content="Button"/>
+                    </ComboBox>
+                    <Button x:Name="btnScaleHalf" Content="0.5" HorizontalAlignment="Left" Margin="41,277,0,0" VerticalAlignment="Top" Height="47" Width="56" Click="btnScaleHalf_Click"/>
+                    <Button x:Name="btnScaleDouble" Content="2" HorizontalAlignment="Left" Margin="105,277,0,0" VerticalAlignment="Top" Height="47" Width="56" Grid.ColumnSpan="2" Click="btnScaleDouble_Click"/>
+                    <Button x:Name="btnScaleTriple" Content="3" HorizontalAlignment="Left" Margin="39,277,0,0" VerticalAlignment="Top" Height="47" Width="56" Grid.Column="1" Click="btnScaleTriple_Click"/>
+                    <Button x:Name="btnReset" Content="Reset" HorizontalAlignment="Left" Margin="41,351,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="92"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Add to a Menu">
+                <Grid/>
             </TabItem>
 
         </TabControl>

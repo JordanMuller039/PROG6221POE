@@ -18,12 +18,11 @@ namespace ST10150702_PROG6221_POE
     {
         private List<Ingredient> ingredients = new List<Ingredient>();
         private List<string> steps = new List<string>();
-        public MainWindow()
-        {
-            InitializeComponent();
+        private List<Recipe> recipes = new List<Recipe>();
+        private List<string> filteringredients = new List<string>();
+        private List<Ingredient> originalIngredients;
+        public List<string> foodgroups = new List<string>
 
-            // Creating the food groups
-            List<string> foodgroups = new List<string>
             {
                 "Carbohydrates",
                 "Protein",
@@ -31,9 +30,21 @@ namespace ST10150702_PROG6221_POE
                 "Vegetables",
                 "Nothing"
             };
+        public MainWindow()
+        {
+            InitializeComponent();
 
             cbFoodGroups.ItemsSource = foodgroups;
 
+        }
+
+        private void UpdateScaleComboBox()
+        {
+            cbScaleRecipe.Items.Clear();
+            foreach (var recipe in recipes)
+            {
+                cbScaleRecipe.Items.Add(recipe.rName);
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -55,6 +66,7 @@ namespace ST10150702_PROG6221_POE
 
             // Create and add the ingredient
             Ingredient ingredient = new Ingredient { Name = name, Quantity = quantity, Measurement = measurement, FoodGroup = foodGroup, Calories = calories };
+            filteringredients.Add(name);
             ingredients.Add(ingredient);
 
             // Clear the input fields
@@ -70,6 +82,8 @@ namespace ST10150702_PROG6221_POE
         {
             // Get the recipe name
             string recipeName = tbRecipeName.Text;
+            cbIngredients.ItemsSource = filteringredients;
+            cbFilterFoodGroup.ItemsSource = foodgroups;
             // Get the steps (one per line)
             steps = new List<string>();
             foreach (var block in rtbSteps.Document.Blocks)
@@ -86,6 +100,7 @@ namespace ST10150702_PROG6221_POE
 
             // Create the recipe
             Recipe recipe = new Recipe(recipeName);
+
             foreach (var ingredient in ingredients)
             {
                 recipe.AddIngredient(ingredient.Name, ingredient.Quantity, ingredient.Measurement, ingredient.FoodGroup, ingredient.Calories);
@@ -94,6 +109,10 @@ namespace ST10150702_PROG6221_POE
             {
                 recipe.AddStep(step);
             }
+
+            recipes.Add(recipe);
+            cbRecipe.Items.Add(recipeName);
+            UpdateScaleComboBox();
 
             // Display the recipe in the RichTextBox
             rtbDisplay.Document.Blocks.Clear();
@@ -112,6 +131,136 @@ namespace ST10150702_PROG6221_POE
             ingredients.Clear();
             steps.Clear();
         }
+        private void NotifyUser(string message)
+        {
+            MessageBox.Show(message, "Calorie Notification", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
 
+        private void btnViewRecipe_Click(object sender, RoutedEventArgs e)
+        {
+            string selectedRecipeName = cbRecipe.SelectedItem as string;
+
+            if (string.IsNullOrEmpty(selectedRecipeName))
+            {
+                MessageBox.Show("Please select a recipe.");
+                return;
+            }
+
+            // Find the selected recipe
+            Recipe selectedRecipe = recipes.FirstOrDefault(r => r.rName == selectedRecipeName);
+
+            if (selectedRecipe == null)
+            {
+                MessageBox.Show("Recipe not found.");
+                return;
+            }
+
+            // Display the recipe in the RichTextBox
+            rtbDisplay2.Document.Blocks.Clear();
+            rtbDisplay2.Document.Blocks.Add(new Paragraph(new Run(selectedRecipe.ToString())));
+        }
+
+
+        // Couldnt get Filtering to work but tried none the less :)
+       private void btnFilter_Click(object sender, RoutedEventArgs e)
+        {
+            var filteredRecipes = recipes.AsEnumerable();
+
+            // Filter by Ingredient if specified
+            if (cbIngredients.SelectedItem != null)
+            {
+                var selectedIngredient = cbIngredients.SelectedItem.ToString();
+                filteredRecipes = filteredRecipes.Where(recipe => recipe.Ingredients.Any(i => i.Name == selectedIngredient));
+            }
+
+            // Filter by Food Group if specified
+            if (cbFilterFoodGroup.SelectedItem != null)
+            {
+                var selectedFoodGroup = cbFilterFoodGroup.SelectedItem.ToString();
+                filteredRecipes = filteredRecipes.Where(recipe => recipe.Ingredients.Any(i => i.FoodGroup == selectedFoodGroup));
+            }
+
+            // Filter by Max Calories if specified
+            if (!string.IsNullOrEmpty(tbFilterCalories.Text) && int.TryParse(tbFilterCalories.Text, out int maxCalories))
+            {
+                filteredRecipes = filteredRecipes.Where(recipe => recipe.TotalCalories <= maxCalories);
+            }
+
+            // Display the filtered recipes
+            rtbDisplay2.Document.Blocks.Clear();
+            foreach (var recipe in filteredRecipes)
+            {
+                rtbDisplay2.AppendText($"{recipe.rName}\n");
+                rtbDisplay2.AppendText($"Steps: {recipe.Steps}\n");
+                rtbDisplay2.AppendText($"Total Calories: {recipe.TotalCalories}\n");
+                rtbDisplay2.AppendText($"Ingredients:\n");
+                foreach (var ingredient in recipe.Ingredients)
+                {
+                    rtbDisplay2.AppendText($"{ingredient.Name} - {ingredient.FoodGroup} - {ingredient.Calories} calories\n");
+                }
+                rtbDisplay2.AppendText("\n");
+            }
+        }
+
+        private void btnScaleHalf_Click(object sender, RoutedEventArgs e)
+        {
+            ScaleRecipe(0.5);
+        }
+
+        private void btnScaleDouble_Click(object sender, RoutedEventArgs e)
+        {
+            ScaleRecipe(2);
+        }
+
+        private void btnScaleTriple_Click(object sender, RoutedEventArgs e)
+        {
+            ScaleRecipe(3);
+        }
+
+        private void ScaleRecipe(double factor)
+        {
+            if (cbScaleRecipe.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a recipe to scale.");
+                return;
+            }
+
+            string selectedRecipeName = cbScaleRecipe.SelectedItem.ToString();
+            var selectedRecipe = recipes.FirstOrDefault(r => r.rName == selectedRecipeName);
+
+            if (selectedRecipe != null)
+            {
+                if (originalIngredients == null)
+                {
+                    originalIngredients = selectedRecipe.Ingredients.Select(i => new Ingredient
+                    {
+                        Name = i.Name,
+                        Quantity = i.Quantity,
+                        FoodGroup = i.FoodGroup,
+                        Calories = i.Calories
+                    }).ToList();
+                }
+
+                foreach (var ingredient in selectedRecipe.Ingredients)
+                {
+                    ingredient.Quantity *= factor;
+                }
+
+                DisplayRecipe(selectedRecipe);
+            }
+        }
+
+            private void DisplayRecipe(Recipe recipe)
+        {
+            rtbDisplay3.Document.Blocks.Clear();
+            rtbDisplay3.AppendText($"{recipe.rName}\n");
+            rtbDisplay3.AppendText($"Steps: {recipe.Steps}\n");
+            rtbDisplay3.AppendText($"Total Calories: {recipe.TotalCalories}\n");
+            rtbDisplay3.AppendText($"Ingredients:\n");
+            foreach (var ingredient in recipe.Ingredients)
+            {
+                rtbDisplay3.AppendText($"{ingredient.Name} - {ingredient.Quantity} - {ingredient.FoodGroup} - {ingredient.Calories} calories\n");
+            }
+        }
     }
 }

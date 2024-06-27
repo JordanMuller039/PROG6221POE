@@ -12,8 +12,11 @@ namespace ST10150702_PROG6221_POE
         public event CalorieNotificationDelegate CalorieNotification;
 
         public string rName { get; set; }
-        private List<Ingredient> ingredients = new List<Ingredient>();
-        private List<string> steps = new List<string>();
+        public List<Ingredient> Ingredients { get; set; }
+        public string Steps { get; set; }
+        public int TotalCalories { get; set; }
+        public List<Ingredient> ingredients = new List<Ingredient>();
+        public List<string> steps = new List<string>();
 
         public Recipe(string name)
         {
@@ -62,7 +65,7 @@ namespace ST10150702_PROG6221_POE
             }
         }
 
-        private int CalculateTotalCalories()
+        public int CalculateTotalCalories()
         {
             int totalCalories = 0;
             foreach (var ingredient in ingredients)
