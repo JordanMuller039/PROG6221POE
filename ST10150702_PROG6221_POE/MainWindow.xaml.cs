@@ -68,7 +68,7 @@ namespace ST10150702_PROG6221_POE
                 return;
             }
             string measurement = string.Join(" ", tbIQuantity.Text.Split(' ').Skip(1));
-            string foodGroup = (cbFoodGroups.SelectedItem as ComboBoxItem)?.Content.ToString() ?? "Unknown"; // Set default value if null
+            string foodGroup = cbFoodGroups.SelectedItem;
             if (!int.TryParse(tbICalorie.Text, out int calories))
             {
                 MessageBox.Show("Please enter a valid calorie amount.");
@@ -241,19 +241,9 @@ namespace ST10150702_PROG6221_POE
             var selectedRecipe = recipes.FirstOrDefault(r => r.rName == selectedRecipeName);
 
             if (selectedRecipe != null)
-            {
-                if (originalIngredients == null)
-                {
-                    originalIngredients = selectedRecipe.Ingredients.Select(i => new Ingredient
-                    {
-                        Name = i.Name,
-                        Quantity = i.Quantity,
-                        FoodGroup = i.FoodGroup,
-                        Calories = i.Calories
-                    }).ToList();
-                }
+            { 
 
-                foreach (var ingredient in selectedRecipe.Ingredients)
+                foreach (var ingredient in selectedRecipe.ingredients)
                 {
                     ingredient.Quantity *= factor;
                 }
@@ -263,17 +253,15 @@ namespace ST10150702_PROG6221_POE
         }
 
             private void DisplayRecipe(Recipe recipe)
-        {
-            rtbDisplay3.Document.Blocks.Clear();
-            rtbDisplay3.AppendText($"{recipe.rName}\n");
-            rtbDisplay3.AppendText($"Steps: {recipe.Steps}\n");
-            rtbDisplay3.AppendText($"Total Calories: {recipe.TotalCalories}\n");
-            rtbDisplay3.AppendText($"Ingredients:\n");
-            foreach (var ingredient in recipe.Ingredients)
             {
+                rtbDisplay3.Document.Blocks.Clear();
+                rtbDisplay3.AppendText($"{recipe.rName}\n");
+                rtbDisplay3.AppendText($"\nIngredients:\n");
+                foreach (var ingredient in recipe.ingredients)
+                {
                 rtbDisplay3.AppendText($"{ingredient.Name} - {ingredient.Quantity} - {ingredient.FoodGroup} - {ingredient.Calories} calories\n");
-            }
-        }
+                }
+             }
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
