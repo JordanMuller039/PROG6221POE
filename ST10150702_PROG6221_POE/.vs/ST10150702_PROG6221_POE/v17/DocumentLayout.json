@@ -11,12 +11,20 @@
       "RelativeMoniker": "D:0:0:{CA5ED77F-96E4-4D6C-A16B-38C74E0FBFDB}|ST10150702_PROG6221_POE.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{CA5ED77F-96E4-4D6C-A16B-38C74E0FBFDB}|ST10150702_PROG6221_POE.csproj|c:\\users\\vermo\\documents\\st10150702_prog6221_poe\\recipe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA5ED77F-96E4-4D6C-A16B-38C74E0FBFDB}|ST10150702_PROG6221_POE.csproj|solutionrelative:recipe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{CA5ED77F-96E4-4D6C-A16B-38C74E0FBFDB}|ST10150702_PROG6221_POE.csproj|c:\\users\\vermo\\documents\\st10150702_prog6221_poe\\ingredient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CA5ED77F-96E4-4D6C-A16B-38C74E0FBFDB}|ST10150702_PROG6221_POE.csproj|solutionrelative:ingredient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CA5ED77F-96E4-4D6C-A16B-38C74E0FBFDB}|ST10150702_PROG6221_POE.csproj|c:\\users\\vermo\\documents\\st10150702_prog6221_poe\\recipe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA5ED77F-96E4-4D6C-A16B-38C74E0FBFDB}|ST10150702_PROG6221_POE.csproj|solutionrelative:recipe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CA5ED77F-96E4-4D6C-A16B-38C74E0FBFDB}|ST10150702_PROG6221_POE.csproj|c:\\users\\vermo\\documents\\st10150702_prog6221_poe\\chartwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{CA5ED77F-96E4-4D6C-A16B-38C74E0FBFDB}|ST10150702_PROG6221_POE.csproj|solutionrelative:chartwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA5ED77F-96E4-4D6C-A16B-38C74E0FBFDB}|ST10150702_PROG6221_POE.csproj|c:\\users\\vermo\\documents\\st10150702_prog6221_poe\\chartwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA5ED77F-96E4-4D6C-A16B-38C74E0FBFDB}|ST10150702_PROG6221_POE.csproj|solutionrelative:chartwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,30 +34,55 @@
       "DocumentGroups": [
         {
           "DockedWidth": 364,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
+              "Title": "ChartWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Vermo\\Documents\\ST10150702_PROG6221_POE\\ChartWindow.xaml.cs",
+              "RelativeDocumentMoniker": "ChartWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\Vermo\\Documents\\ST10150702_PROG6221_POE\\ChartWindow.xaml.cs",
+              "RelativeToolTip": "ChartWindow.xaml.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAADAAAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-27T15:43:46.988Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ChartWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\Vermo\\Documents\\ST10150702_PROG6221_POE\\ChartWindow.xaml",
+              "RelativeDocumentMoniker": "ChartWindow.xaml",
+              "ToolTip": "C:\\Users\\Vermo\\Documents\\ST10150702_PROG6221_POE\\ChartWindow.xaml",
+              "RelativeToolTip": "ChartWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-06-27T15:42:35.796Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "Ingredient.cs",
               "DocumentMoniker": "C:\\Users\\Vermo\\Documents\\ST10150702_PROG6221_POE\\Ingredient.cs",
               "RelativeDocumentMoniker": "Ingredient.cs",
               "ToolTip": "C:\\Users\\Vermo\\Documents\\ST10150702_PROG6221_POE\\Ingredient.cs",
               "RelativeToolTip": "Ingredient.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAoAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-27T12:04:13.696Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "Recipe.cs",
               "DocumentMoniker": "C:\\Users\\Vermo\\Documents\\ST10150702_PROG6221_POE\\Recipe.cs",
               "RelativeDocumentMoniker": "Recipe.cs",
               "ToolTip": "C:\\Users\\Vermo\\Documents\\ST10150702_PROG6221_POE\\Recipe.cs",
               "RelativeToolTip": "Recipe.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAADcAAAAhAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAADgAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-27T12:01:17.78Z",
               "EditorCaption": ""
@@ -74,7 +107,7 @@
               "RelativeDocumentMoniker": "MainWindow.xaml.cs",
               "ToolTip": "C:\\Users\\Vermo\\Documents\\ST10150702_PROG6221_POE\\MainWindow.xaml.cs",
               "RelativeToolTip": "MainWindow.xaml.cs",
-              "ViewState": "AQIAANcAAAAAAAAAAAAwwPYAAAARAAAA",
+              "ViewState": "AQIAACkBAAAAAAAAAAAAADoBAAArAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-26T23:26:00.445Z",
               "EditorCaption": ""

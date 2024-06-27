@@ -111,7 +111,20 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Add to a Menu">
-                <Grid/>
+                <Grid>
+                    <RichTextBox x:Name="rtbDisplay4" Margin="309,23,23,41">
+                        <FlowDocument>
+                            <Paragraph>
+                                <Run Text=""/>
+                            </Paragraph>
+                        </FlowDocument>
+                    </RichTextBox>
+                    <Menu Margin="28,23,297,593"/>
+                    <Label Content="Pick a Recipe to Add:" HorizontalAlignment="Left" Margin="39,33,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+                    <ComboBox x:Name="cbAddMenu" HorizontalAlignment="Left" Margin="42,59,0,0" VerticalAlignment="Top" Width="120"/>
+                    <Button x:Name="Add" Content="Add" HorizontalAlignment="Left" Margin="39,95,0,0" VerticalAlignment="Top" Width="55" FontWeight="Bold" Click="Add_Click"/>
+                    <Button x:Name="ShowGraph" Content="Show Graph" HorizontalAlignment="Left" Margin="40,130,0,0" VerticalAlignment="Top" Width="122" Click="ShowGraph_Click"/>
+                </Grid>
             </TabItem>
 
         </TabControl>

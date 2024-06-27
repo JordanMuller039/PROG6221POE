@@ -20,6 +20,7 @@ namespace ST10150702_PROG6221_POE
         private List<string> steps = new List<string>();
         private List<Recipe> recipes = new List<Recipe>();
         private List<string> filteringredients = new List<string>();
+        private List<Recipe> menuRecipes = new List<Recipe>();
         private List<Ingredient> originalIngredients;
         public List<string> foodgroups = new List<string>
 
@@ -47,6 +48,16 @@ namespace ST10150702_PROG6221_POE
             }
         }
 
+        private void CbAddMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cbAddMenu.SelectedItem != null)
+            {
+                Recipe selectedRecipe = (Recipe)cbAddMenu.SelectedItem;
+                DisplayRecipe(selectedRecipe);
+            }
+        }
+
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             // Get the input values
@@ -57,7 +68,7 @@ namespace ST10150702_PROG6221_POE
                 return;
             }
             string measurement = string.Join(" ", tbIQuantity.Text.Split(' ').Skip(1));
-            string foodGroup = (cbFoodGroups.SelectedItem as ComboBoxItem)?.Content.ToString();
+            string foodGroup = (cbFoodGroups.SelectedItem as ComboBoxItem)?.Content.ToString() ?? "Unknown"; // Set default value if null
             if (!int.TryParse(tbICalorie.Text, out int calories))
             {
                 MessageBox.Show("Please enter a valid calorie amount.");
@@ -112,6 +123,7 @@ namespace ST10150702_PROG6221_POE
 
             recipes.Add(recipe);
             cbRecipe.Items.Add(recipeName);
+            cbAddMenu.Items.Add(recipeName);
             UpdateScaleComboBox();
 
             // Display the recipe in the RichTextBox
@@ -261,6 +273,62 @@ namespace ST10150702_PROG6221_POE
             {
                 rtbDisplay3.AppendText($"{ingredient.Name} - {ingredient.Quantity} - {ingredient.FoodGroup} - {ingredient.Calories} calories\n");
             }
+        }
+
+        private void Add_Click(object sender, RoutedEventArgs e)
+        {
+            if (cbAddMenu.SelectedItem != null)
+            {
+                string selectedRecipeName = cbAddMenu.SelectedItem.ToString();
+                Recipe selectedRecipe = recipes.FirstOrDefault(r => r.rName == selectedRecipeName);
+
+                if (selectedRecipe != null)
+                {
+                    menuRecipes.Add(selectedRecipe);
+                    rtbDisplay4.AppendText(selectedRecipe.ToString() + "\n");
+                }
+            }
+        }
+
+        private void ShowGraph_Click(object sender, RoutedEventArgs e)
+        {
+            Dictionary<string, int> foodGroupCounts = new Dictionary<string, int>();
+
+            foreach (var recipe in menuRecipes)
+            {
+                foreach (var ingredient in recipe.ingredients)
+                {
+                    if (ingredient.FoodGroup != null)
+                    {
+                        if (foodGroupCounts.ContainsKey(ingredient.FoodGroup))
+                        {
+                            foodGroupCounts[ingredient.FoodGroup] += ingredient.Calories;
+                        }
+                        else
+                        {
+                            foodGroupCounts[ingredient.FoodGroup] = ingredient.Calories;
+                        }
+                    }
+                }
+            }
+
+            if (foodGroupCounts.Count == 0)
+            {
+                MessageBox.Show("No food group data found.");
+                return;
+            }
+
+            ChartWindow chartWindow = new ChartWindow();
+            chartWindow.SetFoodGroupCounts(foodGroupCounts);
+            chartWindow.ShowPieChart();
+            chartWindow.Show();
+        }
+
+        private void DisplayPieChart(Dictionary<string, int> foodGroupCounts)
+        {
+            ChartWindow chartWindow = new ChartWindow();
+            chartWindow.ShowPieChart();
+            chartWindow.Show();
         }
     }
 }
